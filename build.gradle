@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'com.vaadin' version '0.14.6.0'
+	id 'java'
+}
+
+group = 'com.watsonxyz.kd'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+ext {
+	set('vaadinVersion', "23.0.7")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'com.vaadin:vaadin-spring-boot-starter'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
