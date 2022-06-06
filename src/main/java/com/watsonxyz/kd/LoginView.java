@@ -1,16 +1,36 @@
 package com.watsonxyz.kd;
 
 
+import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import javax.annotation.security.PermitAll;
+
+
 @Route("login")
 @PageTitle("Login | People Of Significance")
-public class LoginView extends VerticalLayout {
+public class LoginView extends VerticalLayout implements BeforeEnterObserver {
+
+    private final LoginForm login = new LoginForm();
+
     public LoginView() {
-        TextField userTextField = new TextField("UserName: ");
-        add(userTextField);
+        addClassName("login-view");
+        setSizeFull();
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        login.setAction("login");
+        add(login);
+
+    }
+
+    @Override
+    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
+        if(beforeEnterEvent.getLocation().getQueryParameters().getParameters().containsKey("error")){
+            login.setError(true);
+        }
     }
 }
