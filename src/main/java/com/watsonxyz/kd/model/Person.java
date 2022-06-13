@@ -2,26 +2,21 @@ package com.watsonxyz.kd.model;
 
 import java.util.Objects;
 
-public class Person implements Entity {
-    private final Long id;
+
+
+public class Person extends AbstractEntity {
+
     private final String firstName;
     private final String lastName;
     private final String email;
     public Person(String firstName, String lastName, String email){
-        this.id = Long.getLong("1");
         this.firstName = firstName;
         this.lastName =lastName;
         this.email = email;
     }
 
-    @Override
     public String getName() {
         return this.getFirstName() +" " + this.getLastName();
-    }
-
-    @Override
-    public Long getID(){
-        return this.id;
     }
     public String getFirstName() {
         return firstName;
@@ -34,7 +29,7 @@ public class Person implements Entity {
     }
 
     @Override
-    public int compareTo(Entity other) {
+    public int compareTo(AbstractEntity other) {
         Objects.requireNonNull(other);
         var compare = -1;
         if(other instanceof Person){
