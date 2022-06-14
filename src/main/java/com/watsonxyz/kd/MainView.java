@@ -43,7 +43,7 @@ public class MainView extends VerticalLayout {
     private void configurePeopleGrid(){
         peopleGrid.addClassName("people-grid");
         peopleGrid.setSizeFull();
-        peopleGrid.setColumns("firstName", "lastName", "email");
+        peopleGrid.setColumns("id", "firstName", "lastName", "email");
         peopleGrid.getColumns().forEach(col -> col.setAutoWidth(true));
     }
     private void configurePersonForm(){

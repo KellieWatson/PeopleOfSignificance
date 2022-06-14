@@ -18,8 +18,7 @@ public class PersonService {
         if (filter == null || filter.isEmpty()) {
             return personRepository.findAll();
         } else {
-            //return personRepository.search(filter);
-            return personRepository.findAll();
+            return personRepository.search(filter);
         }
     }
     public Long countPersons(){

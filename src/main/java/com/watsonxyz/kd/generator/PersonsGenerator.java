@@ -25,19 +25,25 @@ public class PersonsGenerator {
             }
             int seed = 123;
             logger.info("Generating Persons Data");
-            Faker faker = new Faker();
-            List<Person> personList = new ArrayList();
-            Person randomPerson = new Person();
-            randomPerson.setFirstName(faker.name.firstName());
-            randomPerson.setLastName(faker.name.lastName());
-            randomPerson.setEmail(faker.internet.email());
-
-            personList.add(randomPerson);
-            personRepository.saveAll(personList);
-
+            List<Person> persons = createSamplePersonsList();
+            personRepository.saveAll(persons);
             logger.info("Generated Sample Person Data");
 
         };
-
+    }
+    public List<Person> createSamplePersonsList(){
+        Faker faker = new Faker();
+        List<Person> personList = new ArrayList();
+        Person randomPerson = new Person();
+        randomPerson.setFirstName(faker.name.firstName());
+        randomPerson.setLastName(faker.name.lastName());
+        randomPerson.setEmail(faker.internet.email());
+        Person randomPerson2 = new Person();
+        randomPerson2.setFirstName(faker.name.firstName());
+        randomPerson2.setLastName(faker.name.lastName());
+        randomPerson2.setEmail(faker.internet.email());
+        personList.add(randomPerson);
+        personList.add(randomPerson2);
+        return personList;
     }
 }
