@@ -9,6 +9,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import com.watsonxyz.kd.model.Person;
+import com.watsonxyz.kd.service.PersonService;
 import com.watsonxyz.kd.views.PersonForm;
 import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
 
@@ -20,13 +21,16 @@ public class MainView extends VerticalLayout {
     private Grid<Person> peopleGrid = new Grid<>(Person.class);
     private TextField filterPeople = new TextField();
     private PersonForm personForm;
+    PersonService personService;
 
-    public MainView() {
+    public MainView(PersonService personService) {
+        this.personService = personService;
         addClassName("main-view");
         setSizeFull();
         configurePeopleGrid();
         configurePersonForm();
         add(getToolBar(), getContent());
+        updateList();
     }
     private Component getContent(){
         HorizontalLayout content = new HorizontalLayout(peopleGrid, personForm);
@@ -56,5 +60,8 @@ public class MainView extends VerticalLayout {
         toolBar.addClassName("toolBar");
         return toolBar;
 
+    }
+    private void updateList() {
+        peopleGrid.setItems(personService.findAllPersons(filterPeople.getValue()));
     }
 }

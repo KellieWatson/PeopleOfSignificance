@@ -1,19 +1,24 @@
 package com.watsonxyz.kd.model;
 
+import org.springframework.context.annotation.Bean;
+
+import javax.persistence.Entity;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 
-
+@Entity
 public class Person extends AbstractEntity {
 
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    public Person(String firstName, String lastName, String email){
-        this.firstName = firstName;
-        this.lastName =lastName;
-        this.email = email;
-    }
+    @NotEmpty
+    private String firstName ="";
+    @NotEmpty
+    private String lastName = "";
+
+    @Email
+    @NotEmpty
+    private String email = "";
 
     public String getName() {
         return this.getFirstName() +" " + this.getLastName();
@@ -26,6 +31,15 @@ public class Person extends AbstractEntity {
     }
     public String getEmail() {
         return email;
+    }
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+    public void setEmail(String email){
+        this.email = email;
     }
 
     @Override
