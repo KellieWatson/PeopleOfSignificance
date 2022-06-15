@@ -2,6 +2,7 @@ package com.watsonxyz.kd;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -14,7 +15,7 @@ import com.watsonxyz.kd.views.PersonForm;
 import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
 
 import javax.annotation.security.PermitAll;
-
+@CssImport("./styles/styles.css")
 @PermitAll
 @Route("")
 public class MainView extends VerticalLayout {
@@ -78,7 +79,6 @@ public class MainView extends VerticalLayout {
             personForm.setVisible(true);
             addClassName("editing");
         }
-        System.out.println("Leaving Edit Person in Main View");
     }
     private void closeEditor(){
         personForm.setPerson(null);
