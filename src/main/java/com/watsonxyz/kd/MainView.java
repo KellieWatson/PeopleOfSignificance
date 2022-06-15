@@ -55,6 +55,7 @@ public class MainView extends VerticalLayout {
         filterPeople.setPlaceholder("Filter By name...");
         filterPeople.setClearButtonVisible(true);
         filterPeople.setValueChangeMode(ValueChangeMode.LAZY);
+        filterPeople.addValueChangeListener(e -> updateList());
         Button addPerson = new Button("Add New Person of Significance");
         HorizontalLayout toolBar = new HorizontalLayout(addPerson, filterPeople);
         toolBar.addClassName("toolBar");
