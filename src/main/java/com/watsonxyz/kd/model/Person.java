@@ -68,16 +68,16 @@ public class Person extends AbstractEntity {
     }
     @Override
     public boolean equals(Object other){
-        Objects.requireNonNull(other);
-        boolean equal;
-        if( other instanceof Person){
+       // Objects.requireNonNull(other);
+        boolean equal = false;
+        if(other == null){
+            return equal;
+        }
+        else if( other instanceof Person){
             Person otherUser = (Person)other;
             equal = this.isEmail(otherUser) &&
                     this.isLastName(otherUser) &&
                     this.isFirstName(otherUser);
-        }
-        else{
-            equal = false;
         }
         return equal;
     }

@@ -24,4 +24,16 @@ public class PersonService {
     public Long countPersons(){
         return personRepository.count();
     }
+
+    public void savePerson(Person person){
+        if(person == null){
+            System.err.println("The person is null. Are you sure the application has been properly connected to the form?");
+        }
+        else{
+            personRepository.saveAndFlush(person);
+        }
+    }
+    public void deletePerson(Person person){
+        personRepository.delete(person);
+    }
 }

@@ -31,6 +31,7 @@ public class MainView extends VerticalLayout {
         configurePersonForm();
         add(getToolBar(), getContent());
         updateList();
+        closeEditor();
     }
     private Component getContent(){
         HorizontalLayout content = new HorizontalLayout(peopleGrid, personForm);
@@ -45,10 +46,15 @@ public class MainView extends VerticalLayout {
         peopleGrid.setSizeFull();
         peopleGrid.setColumns("id", "firstName", "lastName", "email");
         peopleGrid.getColumns().forEach(col -> col.setAutoWidth(true));
+        peopleGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
+        peopleGrid.asSingleSelect().addValueChangeListener(event -> editPerson(event.getValue()));
     }
     private void configurePersonForm(){
         personForm = new PersonForm();
         personForm.setWidth("25em");
+        personForm.addListener(PersonForm.SaveEvent.class, this::savePerson);
+        personForm.addListener(PersonForm.DeleteEvent.class, this::deletePerson);
+        personForm.addListener(PersonForm.CloseEvent.class, e -> closeEditor());
     }
 
     private HorizontalLayout getToolBar(){
@@ -57,10 +63,41 @@ public class MainView extends VerticalLayout {
         filterPeople.setValueChangeMode(ValueChangeMode.LAZY);
         filterPeople.addValueChangeListener(e -> updateList());
         Button addPerson = new Button("Add New Person of Significance");
+        addPerson.addClickListener(click -> addPerson());
         HorizontalLayout toolBar = new HorizontalLayout(addPerson, filterPeople);
         toolBar.addClassName("toolBar");
         return toolBar;
 
+    }
+    public void editPerson(Person person){
+        if(person == null){
+            closeEditor();
+        }
+        else {
+            personForm.setPerson(person);
+            personForm.setVisible(true);
+            addClassName("editing");
+        }
+        System.out.println("Leaving Edit Person in Main View");
+    }
+    private void closeEditor(){
+        personForm.setPerson(null);
+        personForm.setVisible(false);
+        removeClassName("editing");
+    }
+    private void savePerson(PersonForm.SaveEvent event){
+        personService.savePerson(event.getPerson());
+        updateList();
+        closeEditor();
+    }
+    private void deletePerson(PersonForm.DeleteEvent event){
+        personService.deletePerson(event.getPerson());
+        updateList();
+        closeEditor();
+    }
+    private void addPerson(){
+        peopleGrid.asSingleSelect().clear();
+        editPerson(new Person());
     }
     private void updateList() {
         peopleGrid.setItems(personService.findAllPersons(filterPeople.getValue()));
