@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 @SpringComponent
@@ -32,18 +33,22 @@ public class PersonsGenerator {
         };
     }
     public List<Person> createSamplePersonsList(){
-        Faker faker = new Faker();
+
         List<Person> personList = new ArrayList();
-        Person randomPerson = new Person();
-        randomPerson.setFirstName(faker.name.firstName());
-        randomPerson.setLastName(faker.name.lastName());
-        randomPerson.setEmail(faker.internet.email());
-        Person randomPerson2 = new Person();
-        randomPerson2.setFirstName(faker.name.firstName());
-        randomPerson2.setLastName(faker.name.lastName());
-        randomPerson2.setEmail(faker.internet.email());
-        personList.add(randomPerson);
-        personList.add(randomPerson2);
+        int random = new Random().nextInt(100) + 10 ;
+
+        for(int i = 0; i < ( random ); i++){
+            Person randomPerson = createSamplePerson();
+            personList.add(randomPerson);
+        }
         return personList;
+    }
+    public Person createSamplePerson(){
+        Faker faker = new Faker();
+        Person samplePerson = new Person();
+        samplePerson.setFirstName(faker.name.firstName());
+        samplePerson.setLastName(faker.name.lastName());
+        samplePerson.setEmail(faker.internet.email());
+        return samplePerson;
     }
 }
