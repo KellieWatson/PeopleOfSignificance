@@ -8,7 +8,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
-import com.watsonxyz.kd.PeopleView;
 
 public class MainLayout extends AppLayout {
 
@@ -29,8 +28,10 @@ public class MainLayout extends AppLayout {
     }
     private void createDrawer(){
         RouterLink peopleListLink = new RouterLink("People", PeopleView.class);
+        RouterLink dashboardLink = new RouterLink("Dashboard", DashboardView.class);
+
         peopleListLink.setHighlightCondition(HighlightConditions.sameLocation());
 
-        addToDrawer(new VerticalLayout(peopleListLink));
+        addToDrawer(new VerticalLayout(peopleListLink, dashboardLink));
     }
 }

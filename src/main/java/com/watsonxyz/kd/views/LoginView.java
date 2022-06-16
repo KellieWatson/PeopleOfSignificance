@@ -1,4 +1,4 @@
-package com.watsonxyz.kd;
+package com.watsonxyz.kd.views;
 
 
 import com.vaadin.flow.component.login.LoginForm;

@@ -1,7 +1,7 @@
 package com.watsonxyz.kd.security;
 
 import com.vaadin.flow.spring.security.VaadinWebSecurityConfigurerAdapter;
-import com.watsonxyz.kd.LoginView;
+import com.watsonxyz.kd.views.LoginView;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
