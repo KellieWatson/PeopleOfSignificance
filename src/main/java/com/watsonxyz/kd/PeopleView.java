@@ -11,20 +11,21 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import com.watsonxyz.kd.model.Person;
 import com.watsonxyz.kd.service.PersonService;
+import com.watsonxyz.kd.views.MainLayout;
 import com.watsonxyz.kd.views.PersonForm;
 import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
 
 import javax.annotation.security.PermitAll;
 @CssImport("./styles/styles.css")
 @PermitAll
-@Route("")
-public class MainView extends VerticalLayout {
+@Route(value="", layout = MainLayout.class)
+public class PeopleView extends VerticalLayout {
     private Grid<Person> peopleGrid = new Grid<>(Person.class);
     private TextField filterPeople = new TextField();
     private PersonForm personForm;
     PersonService personService;
 
-    public MainView(PersonService personService) {
+    public PeopleView(PersonService personService) {
         this.personService = personService;
         addClassName("main-view");
         setSizeFull();
