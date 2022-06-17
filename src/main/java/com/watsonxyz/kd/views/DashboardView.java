@@ -1,6 +1,7 @@
 package com.watsonxyz.kd.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -9,7 +10,7 @@ import com.watsonxyz.kd.service.PersonService;
 
 import javax.annotation.security.PermitAll;
 
-@JsModule("./src/js/googlechartqs.js")
+@JavaScript("./src/js/googlechartqs.js")
 @PermitAll
 @Route(value = "dashboard", layout = MainLayout.class)
 public class DashboardView extends VerticalLayout {
@@ -23,4 +24,5 @@ public class DashboardView extends VerticalLayout {
         TextField statistics = new TextField(personService.countPersons() + " Persons");
         return statistics;
     }
+
 }
