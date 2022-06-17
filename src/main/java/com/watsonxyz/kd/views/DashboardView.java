@@ -1,6 +1,7 @@
 package com.watsonxyz.kd.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -8,6 +9,7 @@ import com.watsonxyz.kd.service.PersonService;
 
 import javax.annotation.security.PermitAll;
 
+@JsModule("./src/js/googlechartqs.js")
 @PermitAll
 @Route(value = "dashboard", layout = MainLayout.class)
 public class DashboardView extends VerticalLayout {
