@@ -29,9 +29,10 @@ public class MainLayout extends AppLayout {
     private void createDrawer(){
         RouterLink peopleListLink = new RouterLink("People", PeopleView.class);
         RouterLink dashboardLink = new RouterLink("Dashboard", DashboardView.class);
+        RouterLink helloLitWorldLink = new RouterLink("HelloLitWorld", HelloLitWorldView.class);
 
         peopleListLink.setHighlightCondition(HighlightConditions.sameLocation());
 
-        addToDrawer(new VerticalLayout(peopleListLink, dashboardLink));
+        addToDrawer(new VerticalLayout(peopleListLink, dashboardLink, helloLitWorldLink));
     }
 }
