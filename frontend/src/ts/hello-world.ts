@@ -1,17 +1,18 @@
-import { html, LitElement} from "lit";
+import { css, customElement,html, LitElement} from "lit";
 import '@vaadin/button';
 import '@vaadin/text-field'
 import '@axa-ch/input-text';
 
+
 class HelloWorld extends LitElement {
+
 
     render() {
         return html`
-            <div>
-                <vaadin-text-field id="firstInput"></vaadin-text-field>
-                <axa-input-text id="secondInput"></axa-input-text>
-                <vaadin-button id="helloButton">Click me!</vaadin-button>
-            </div>`;
+            	<div id="content"></div>
+		<vaadin-text-field id="first-input" label="Your name"></vaadin-text-field>
+                <vaadin-text-field id="second-input"></vaadin-text-field>
+                <vaadin-button id="hello-button">Click me!</vaadin-button>`;
     }
 }
 
