@@ -30,9 +30,10 @@ public class MainLayout extends AppLayout {
         RouterLink peopleListLink = new RouterLink("People", PeopleView.class);
         RouterLink dashboardLink = new RouterLink("Dashboard", DashboardView.class);
         RouterLink helloLitWorldLink = new RouterLink("HelloLitWorld", HelloLitWorldView.class);
+        RouterLink googleChartQSLink = new RouterLink("GoogleChartQS", GoogleChartQSView.class);
 
         peopleListLink.setHighlightCondition(HighlightConditions.sameLocation());
 
-        addToDrawer(new VerticalLayout(peopleListLink, dashboardLink, helloLitWorldLink));
+        addToDrawer(new VerticalLayout(peopleListLink, dashboardLink, helloLitWorldLink, googleChartQSLink));
     }
 }
