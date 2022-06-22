@@ -1,7 +1,7 @@
-import { css, customElement,html, LitElement} from "lit";
+import { css, html, LitElement} from "lit";
 import '@vaadin/button';
 import '@vaadin/text-field'
-import '@axa-ch/input-text';
+
 
 
 class HelloWorld extends LitElement {

@@ -63,7 +63,7 @@ public class PersonForm extends FormLayout {
     }
 
     public static abstract class PersonFormEvent extends ComponentEvent<PersonForm>{
-        private Person person;
+        private final Person person;
         protected PersonFormEvent(PersonForm source, Person person){
             super(source, false);
             this.person = person;
@@ -88,7 +88,7 @@ public class PersonForm extends FormLayout {
             super(source, null);
         }
     }
-    public <T extends ComponentEvent<?>>Registration addListener(Class<T> eventType, ComponentEventListener<T> listner){
-        return getEventBus().addListener(eventType, listner);
+    public <T extends ComponentEvent<?>>Registration addListener(Class<T> eventType, ComponentEventListener<T> listener){
+        return getEventBus().addListener(eventType, listener);
     }
 }
