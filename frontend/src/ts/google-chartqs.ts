@@ -9,6 +9,7 @@ class GoogleChartQS extends LitElement {
     render() {
         return html`
             <div id="content"></div>
+            <div id="chart-div"></div>
             <script type="text/javascript">
 
                 // Load the Visualization API and the corechart package.
