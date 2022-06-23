@@ -23,7 +23,7 @@ public class GoogleChartQSView extends VerticalLayout {
         this.setEnabled(true);
 
         GoogleChartQS googleChartQS = new GoogleChartQS();
-        googleChartQS.setContent(new Label("Hello From HelloLitWorldView"));
+        googleChartQS.setContent(new Label("Hello From GoogleChartQSView"));
         Div googleChartQSDiv = new Div();
         googleChartQSDiv.add(googleChartQS);
         this.add(googleChartQSDiv, getStatistics());

@@ -1,18 +1,49 @@
 import { css, html, LitElement} from "lit";
 import '@vaadin/button';
 import '@vaadin/text-field'
-import '@google-web-components/google-chart';
+
 
 
 
 class GoogleChartQS extends LitElement {
     render() {
         return html`
-            	<div id="content"></div>
-                <google-chart data='[["Month", "Days"], ["Jan", 31]]'></google-chart>
-		<vaadin-text-field id="first-input" label="Your name"></vaadin-text-field>
-                <vaadin-text-field id="second-input"></vaadin-text-field>
-                <vaadin-button id="hello-button">GoogleChartQS!</vaadin-button>`;
+            <div id="content"></div>
+            <script type="text/javascript">
+
+                // Load the Visualization API and the corechart package.
+                google.charts.load('current', {'packages':['corechart']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Callback that creates and populates a data table,
+                // instantiates the pie chart, passes in the data and
+                // draws it.
+                function drawChart() {
+
+                    // Create the data table.
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Topping');
+                    data.addColumn('number', 'Slices');
+                    data.addRows([
+                        ['Mushrooms', 3],
+                        ['Onions', 1],
+                        ['Olives', 1],
+                        ['Zucchini', 1],
+                        ['Pepperoni', 2]
+                    ]);
+
+                    // Set chart options
+                    var options = {'title':'How Much Pizza I Ate Last Night',
+                        'width':400,
+                        'height':300};
+
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                }
+            </script>`;
     }
 }
 customElements.define('google-chartqs', GoogleChartQS);
