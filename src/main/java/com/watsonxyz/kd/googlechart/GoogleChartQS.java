@@ -40,7 +40,7 @@ public class GoogleChartQS extends LitTemplate{
    }
     public void setContent(Component content) {
         this.content.removeAll();
-        this.content.add(content, chartDiv);
+        this.content.add(content);
     }
 
 }
